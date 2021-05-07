@@ -15,5 +15,11 @@
   "bugs": {
     "url": "https://github.com/yukinouz/gulp-essentials/issues"
   },
-  "homepage": "https://github.com/yukinouz/gulp-essentials#readme"
+  "homepage": "https://github.com/yukinouz/gulp-essentials#readme",
+  "devDependencies": {
+    "fibers": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-sass": "^4.1.0"
+  },
+  "dependencies": {}
 }
