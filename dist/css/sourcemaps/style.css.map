@@ -1,1 +1,0 @@
-{"version":3,"sourceRoot":"","sources":["style.scss"],"names":[],"mappings":"AAEA;EACE","file":"style.css","sourcesContent":["@charset \"utf-8\";\n\n.hoge {\n  transform: translateY(-50%);\n}"]}

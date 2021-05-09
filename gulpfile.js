@@ -5,12 +5,12 @@ const sass = require('gulp-sass');
 sass.compiler = require('sass'); // dart sassを使う
 
 const compileSass = (done) => {
-  src('./src/scss/**/*.scss', { sourcemaps: true })
+  src('./src/scss/**/*.scss')
     .pipe(sass({
       fiber: Fiber,
       outputStyle: 'expanded'
     }))
-    .pipe(dest('./dist/css', { sourcemaps: './sourcemaps' }));
+    .pipe(dest('./dist/css'));
   done();
 };
 
