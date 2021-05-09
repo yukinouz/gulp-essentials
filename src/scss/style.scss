@@ -1,0 +1,8 @@
+@charset "utf-8";
+
+$red: #f00;
+
+.hoge {
+  color: $red;
+  transform: translateY(-50%);
+}
