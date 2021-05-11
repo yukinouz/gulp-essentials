@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/yukinouz/gulp-essentials/issues"
   },
-  "homepage": "https://github.com/yukinouz/gulp-essentials#readme"
+  "homepage": "https://github.com/yukinouz/gulp-essentials#readme",
+  "devDependencies": {
+    "gulp": "^4.0.2"
+  }
 }
