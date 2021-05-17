@@ -6,3 +6,9 @@ $red: #f00;
   color: $red;
   transform: translateY(-50%);
 }
+
+.grid {
+  display: grid;
+  grid-template-rows: 100px 50px;
+  grid-template-columns: 150px 1fr;
+}
