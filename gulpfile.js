@@ -10,12 +10,6 @@ const cssdeclsort = require('css-declaration-sorter');
 sass.compiler = require('sass'); // dart sassを使う
 
 const compileSass = (done) => {
-  const postcssPlugins = [
-    autoprefixer({
-      cascade: false,
-    }),
-    cssdeclsort({ order: 'alphabetical' })
-  ];
   src('./src/scss/**/*.scss', { sourcemaps: true })
     .pipe(
       plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
