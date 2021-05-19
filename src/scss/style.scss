@@ -4,6 +4,15 @@ $red: #f00;
 
 .hoge {
   color: $red;
+}
+
+.alphabetical {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prefix {
   transform: translateY(-50%);
 }
 

@@ -1,6 +1,15 @@
 .hoge {
-  -webkit-transform: translateY(-50%);
   color: #f00;
+}
+
+.alphabetical {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.prefix {
+  -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
 }
 
