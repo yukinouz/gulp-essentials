@@ -6,10 +6,18 @@ const notify = require('gulp-notify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssdeclsort = require('css-declaration-sorter');
+const { postcssPlugin } = require('css-declaration-sorter');
 
 sass.compiler = require('sass'); // dart sassを使う
 
 const compileSass = (done) => {
+  const postcssPlugins = [
+    autoprefixer({
+      grid: "autoplace",
+      cascade: false,
+    }),
+    cssdeclsort({ order: 'alphabetical' })
+  ];
   src('./src/scss/**/*.scss', { sourcemaps: true })
     .pipe(
       plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
@@ -18,13 +26,7 @@ const compileSass = (done) => {
       fiber: Fiber,
       outputStyle: 'expanded'
     }))
-    .pipe(postcss([autoprefixer(
-      {
-        grid: "autoplace",
-        cascade: false
-      }
-    )]))
-    .pipe(postcss([cssdeclsort({ order: 'alphabetical' })]))
+    .pipe(postcss(postcssPlugins))
     .pipe(dest('./dist/css', { sourcemaps: './sourcemaps' }));
   done();
 };
