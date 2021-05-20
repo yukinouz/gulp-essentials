@@ -6,7 +6,7 @@ const notify = require('gulp-notify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssdeclsort = require('css-declaration-sorter');
-const { postcssPlugin } = require('css-declaration-sorter');
+const gcmq = require('gulp-group-css-media-queries');
 
 sass.compiler = require('sass'); // dart sassを使う
 
@@ -27,6 +27,7 @@ const compileSass = (done) => {
       outputStyle: 'expanded'
     }))
     .pipe(postcss(postcssPlugins))
+    .pipe(gcmq())
     .pipe(dest('./dist/css', { sourcemaps: './sourcemaps' }));
   done();
 };
