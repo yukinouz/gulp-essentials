@@ -4,5 +4,34 @@ $red: #f00;
 
 .hoge {
   color: $red;
+}
+
+.alphabetical {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prefix {
   transform: translateY(-50%);
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: 100px 50px;
+  grid-template-columns: 150px 1fr;
+}
+
+.media-query-sample01 {
+  font-size: 14px;
+  @media only screen and (min-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+.media-query-sample02 {
+  color: blue;
+  @media only screen and (min-width: 768px) {
+    color: green;
+  }
 }
