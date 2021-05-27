@@ -1,4 +1,4 @@
-const { src, dest } = require('gulp');
+const { src, dest, watch, series, parallel }  = require('gulp');
 const Fiber = require('fibers');
 const sass = require('gulp-sass');
 const plumber = require('gulp-plumber');
@@ -8,6 +8,7 @@ const autoprefixer = require('autoprefixer');
 const cssdeclsort = require('css-declaration-sorter');
 const gcmq = require('gulp-group-css-media-queries');
 const mode = require('gulp-mode')();
+const browserSync = require('browser-sync');
 
 sass.compiler = require('sass'); // dart sassを使う
 
@@ -33,6 +34,33 @@ const compileSass = (done) => {
   done();
 };
 
+const buildServer = (done) => {
+  browserSync.init({
+    port: 8080,
+    files: ["**/*"],
+    // 静的サイト
+    server: { baseDir: './' },
+    // 動的サイト
+    // proxy: "http://localsite.local/",
+    open: true,
+    watchOptions: {
+      debounceDelay: 1000,
+    },
+  });
+  done();
+};
+
+const browserReload = done => {
+  browserSync.reload();
+  done();
+};
+
+const watchFiles = () => {
+  watch( './src/scss/**/*.scss', series(compileSass, browserReload))
+  watch('./**/*.html', browserReload)
+};
+
 module.exports = {
   sass: compileSass,
+  default: parallel(buildServer, watchFiles),
 };
