@@ -2,8 +2,9 @@
   "name": "gulp-essentials",
   "version": "1.0.0",
   "scripts": {
-    "sass": "gulp sass",
-    "build": "gulp sass --production",
+    "sass": "npx gulp sass",
+    "build": "npx gulp sass --production",
+    "watch": "npx gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +21,7 @@
   "homepage": "https://github.com/yukinouz/gulp-essentials#readme",
   "devDependencies": {
     "autoprefixer": "^10.2.5",
+    "browser-sync": "^2.26.14",
     "css-declaration-sorter": "^6.0.3",
     "fibers": "^5.0.0",
     "gulp": "^4.0.2",
