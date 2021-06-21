@@ -30,6 +30,7 @@
     "gulp-notify": "^4.0.0",
     "gulp-plumber": "^1.2.1",
     "gulp-postcss": "^9.0.0",
+    "gulp-pug": "^5.0.0",
     "gulp-sass": "^4.1.0",
     "node-sass": "^6.0.0",
     "postcss": "^8.2.15",
