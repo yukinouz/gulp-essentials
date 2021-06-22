@@ -9,6 +9,7 @@ const cssdeclsort = require('css-declaration-sorter');
 const gcmq = require('gulp-group-css-media-queries');
 const mode = require('gulp-mode')();
 const browserSync = require('browser-sync');
+const pug = require('gulp-pug');
 
 sass.compiler = require('sass'); // dart sassを使う
 
@@ -39,7 +40,7 @@ const buildServer = (done) => {
     port: 8080,
     files: ["**/*"],
     // 静的サイト
-    server: { baseDir: './' },
+    server: { baseDir: './dist' },
     // 動的サイト
     // proxy: "http://localsite.local/",
     open: true,
@@ -55,12 +56,24 @@ const browserReload = done => {
   done();
 };
 
+const compilePug = done => {
+  src(['./src/pug/**/*.pug', '!' + './src/pug/**/_*.pug'])
+    .pipe(plumber(({ errorHandler: notify.onError('Error: <%= error.message %>') })))
+    .pipe(pug({
+      pretty: true
+    }))
+    .pipe(dest('./dist'));
+  done();
+};
+
 const watchFiles = () => {
   watch( './src/scss/**/*.scss', series(compileSass, browserReload))
-  watch('./**/*.html', browserReload)
+  watch( './src/pug/**/*.pug', series(compilePug, browserReload));
+  // watch('./**/*.html', browserReload)
 };
 
 module.exports = {
   sass: compileSass,
+  pug: compilePug,
   default: parallel(buildServer, watchFiles),
 };
