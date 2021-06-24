@@ -45,16 +45,16 @@
 .media-query-sample01 {
   font-size: 14px;
 }
-@media only screen and (min-width: 768px) {
-  .media-query-sample01 {
-    font-size: 18px;
-  }
-}
 
 .media-query-sample02 {
   color: blue;
 }
+
 @media only screen and (min-width: 768px) {
+  .media-query-sample01 {
+    font-size: 18px;
+  }
+
   .media-query-sample02 {
     color: green;
   }
