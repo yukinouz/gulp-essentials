@@ -86,5 +86,6 @@ module.exports = {
   sass: compileSass,
   pug: compilePug,
   cache: cacheBusting,
+  build: parallel(compileSass, series(compilePug, cacheBusting)),
   default: parallel(buildServer, watchFiles),
 };
