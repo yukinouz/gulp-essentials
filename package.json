@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "sass": "npx gulp sass",
-    "build": "npx gulp sass --production",
+    "build": "npx gulp build --production",
     "watch": "npx gulp",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
