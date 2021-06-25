@@ -10,7 +10,7 @@ const gcmq = require('gulp-group-css-media-queries');
 const mode = require('gulp-mode')();
 const browserSync = require('browser-sync');
 const pug = require('gulp-pug');
-const crypto = require('crypto'); 
+const crypto = require('crypto');
 const hash = crypto.randomBytes(8).toString('hex');
 const replace = require('gulp-replace');
 
