@@ -71,7 +71,7 @@ const compilePug = done => {
 
 const cacheBusting = done => {
   src('./dist/index.html')
-    .pipe(replace(/\.(js|css)\?ver/g, '.$1?ver='+hash))
+    .pipe(replace(/\.(js|css)\?ver/g, '.$1?ver=' + hash))
     .pipe(dest('./dist'));
   done();
 };
