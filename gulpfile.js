@@ -1,13 +1,10 @@
 const { src, dest } = require('gulp');
-const Fiber = require('fibers');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const cssdeclsort = require('css-declaration-sorter');
-
-sass.compiler = require('sass'); // dart sassを使う
 
 const compileSass = (done) => {
   src('./src/scss/**/*.scss', { sourcemaps: true })
@@ -15,7 +12,6 @@ const compileSass = (done) => {
       plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
     )
     .pipe(sass({
-      fiber: Fiber,
       outputStyle: 'expanded'
     }))
     .pipe(postcss([autoprefixer(
