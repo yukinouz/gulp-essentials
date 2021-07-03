@@ -24,7 +24,6 @@
     "autoprefixer": "^10.2.6",
     "browser-sync": "^2.27.4",
     "css-declaration-sorter": "^6.0.3",
-    "fibers": "^5.0.0",
     "gulp": "^4.0.2",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-mode": "^1.1.0",
