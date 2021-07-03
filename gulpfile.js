@@ -3,9 +3,7 @@ const sass = require('gulp-sass')(require('sass'));
 
 const compileSass = (done) => {
   src('./src/scss/**/*.scss')
-    .pipe(sass({
-      outputStyle: 'expanded'
-    }))
+    .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(dest('./dist/css'));
   done();
 };
