@@ -1,13 +1,11 @@
 const { src, dest } = require('gulp');
-const Fiber = require('fibers');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 
 sass.compiler = require('sass'); // dart sassを使う
 
 const compileSass = (done) => {
   src('./src/scss/**/*.scss')
     .pipe(sass({
-      fiber: Fiber,
       outputStyle: 'expanded'
     }))
     .pipe(dest('./dist/css'));
