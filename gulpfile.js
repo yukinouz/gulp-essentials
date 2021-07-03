@@ -1,6 +1,5 @@
 const { src, dest, watch, series, parallel }  = require('gulp');
-const Fiber = require('fibers');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const postcss = require('gulp-postcss');
@@ -9,8 +8,6 @@ const cssdeclsort = require('css-declaration-sorter');
 const gcmq = require('gulp-group-css-media-queries');
 const mode = require('gulp-mode')();
 const browserSync = require('browser-sync');
-
-sass.compiler = require('sass'); // dart sassを使う
 
 const compileSass = (done) => {
   const postcssPlugins = [
@@ -24,10 +21,7 @@ const compileSass = (done) => {
     .pipe(
       plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
     )
-    .pipe(sass({
-      fiber: Fiber,
-      outputStyle: 'expanded'
-    }))
+    .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(postcss(postcssPlugins))
     .pipe(mode.production(gcmq()))
     .pipe(dest('./dist/css', { sourcemaps: './sourcemaps' }));
