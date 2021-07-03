@@ -1,6 +1,6 @@
 const { src, dest, watch, series, parallel }  = require('gulp');
 const Fiber = require('fibers');
-const sass = require('gulp-sass');
+const sass = require('gulp-sass')(require('sass'));
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
 const postcss = require('gulp-postcss');
@@ -13,8 +13,6 @@ const pug = require('gulp-pug');
 const crypto = require('crypto');
 const hash = crypto.randomBytes(8).toString('hex');
 const replace = require('gulp-replace');
-
-sass.compiler = require('sass'); // dart sassを使う
 
 const compileSass = (done) => {
   const postcssPlugins = [
@@ -29,7 +27,6 @@ const compileSass = (done) => {
       plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
     )
     .pipe(sass({
-      fiber: Fiber,
       outputStyle: 'expanded'
     }))
     .pipe(postcss(postcssPlugins))
