@@ -1,5 +1,4 @@
 const { src, dest, watch, series, parallel }  = require('gulp');
-const Fiber = require('fibers');
 const sass = require('gulp-sass')(require('sass'));
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
