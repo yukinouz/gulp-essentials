@@ -9,6 +9,15 @@ const gcmq = require('gulp-group-css-media-queries');
 const mode = require('gulp-mode')();
 const browserSync = require('browser-sync');
 const pug = require('gulp-pug');
+const webpackStream = require("webpack-stream");
+const webpack = require("webpack");
+
+const webpackConfig = require("./webpack.config");
+
+const bundleJs = () => {
+  return webpackStream(webpackConfig, webpack)
+    .pipe(dest("dist/js"));
+};
 
 const compileSass = (done) => {
   const postcssPlugins = [
@@ -31,7 +40,7 @@ const compileSass = (done) => {
 
 const buildServer = (done) => {
   browserSync.init({
-    port: 8080,
+    port: 8082,
     files: ["**/*"],
     // 静的サイト
     server: { baseDir: './dist' },
@@ -69,5 +78,6 @@ const watchFiles = () => {
 module.exports = {
   sass: compileSass,
   pug: compilePug,
+  bundle: bundleJs,
   default: parallel(buildServer, watchFiles),
 };
