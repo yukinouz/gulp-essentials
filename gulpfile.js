@@ -37,9 +37,7 @@ const compileSass = (done) => {
     .pipe(
       plumber({ errorHandler: notify.onError('Error: <%= error.message %>') })
     )
-    .pipe(sass({
-      outputStyle: 'expanded'
-    }))
+    .pipe(sass({ outputStyle: 'expanded' }))
     .pipe(postcss(postcssPlugins))
     .pipe(mode.production(gcmq()))
     .pipe(dest('./dist/css', { sourcemaps: './sourcemaps' }));
