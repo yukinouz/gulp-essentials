@@ -1,1 +1,1 @@
-!function(){"use strict";document.getElementById("js-alert-button").addEventListener("click",(()=>{alert("ボタンがクリックされた")}))}();
+!function(){"use strict";document.getElementById("js-alert-button").addEventListener("click",(function(){alert("ボタンがクリックされた")}))}();
