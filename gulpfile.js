@@ -82,10 +82,10 @@ const tinyPng = done => {
     .pipe(plumber())
     .pipe(tinypng({
       key: "Your API KEY",
-      sigFile: "./src/img/.tinypng-sigs", // 一度圧縮された画像を無視
-      log: true, // エラーログを出す
-      summarise: true, // サマリーを生成
-      sameDest: true, // 圧縮後画像を同じ場所に
+      sigFile: "./src/img/.tinypng-sigs",
+      log: true,
+      summarise: true,
+      sameDest: true,
     }))
     .pipe(dest("./src/img"));
   done();
@@ -107,6 +107,7 @@ const copyImages = (done) => {
 const cacheBusting = done => {
   src('./dist/index.html')
     .pipe(replace(/\.(js|css)\?ver/g, '.$1?ver=' + hash))
+    .pipe(replace(/\.(jpg|jpeg|png|svg|gif)/g, '.$1?ver=' + hash))
     .pipe(dest('./dist'));
   done();
 };
