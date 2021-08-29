@@ -12,6 +12,8 @@ const pug = require('gulp-pug');
 const crypto = require('crypto');
 const hash = crypto.randomBytes(8).toString('hex');
 const replace = require('gulp-replace');
+const tinypng = require("gulp-tinypng-extended");
+const webp = require("gulp-webp");
 
 const webpackStream = require("webpack-stream");
 const webpack = require("webpack");
@@ -75,6 +77,33 @@ const compilePug = done => {
   done();
 };
 
+const tinyPng = done => {
+  src("./src/img/**/*.{png,jpg,jpeg}")
+    .pipe(plumber())
+    .pipe(tinypng({
+      key: "Your API KEY",
+      sigFile: "./src/img/.tinypng-sigs", // 一度圧縮された画像を無視
+      log: true, // エラーログを出す
+      summarise: true, // サマリーを生成
+      sameDest: true, // 圧縮後画像を同じ場所に
+    }))
+    .pipe(dest("./src/img"));
+  done();
+};
+
+const generateWebp = done => {
+  src("./src/img/**/*.{png,jpg,jpeg}")
+    .pipe(webp())
+    .pipe(dest("src/img"));
+  done();
+};
+
+const copyImages = (done) => {
+  src(["./src/img/**/*"])
+    .pipe(dest("./dist/img"));
+  done();
+};
+
 const cacheBusting = done => {
   src('./dist/index.html')
     .pipe(replace(/\.(js|css)\?ver/g, '.$1?ver=' + hash))
@@ -93,6 +122,7 @@ module.exports = {
   sass: compileSass,
   pug: compilePug,
   bundle: bundleJs,
+  image: series(tinyPng, generateWebp, copyImages),
   cache: cacheBusting,
   default: parallel(buildServer, watchFiles),
 };
