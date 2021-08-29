@@ -27,7 +27,7 @@ const bundleJs = () => {
   .pipe(dest("dist/js"));
 };
 
-const compileSass = (done) => {
+const compileSass = done => {
   const postcssPlugins = [
     autoprefixer({
       grid: "autoplace",
@@ -46,7 +46,7 @@ const compileSass = (done) => {
   done();
 };
 
-const buildServer = (done) => {
+const buildServer = done => {
   browserSync.init({
     port: 8080,
     files: ["**/*"],
@@ -98,7 +98,7 @@ const generateWebp = done => {
   done();
 };
 
-const copyImages = (done) => {
+const copyImages = done => {
   src(["./src/img/**/*"])
     .pipe(dest("./dist/img"));
   done();
