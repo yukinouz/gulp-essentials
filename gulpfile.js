@@ -107,7 +107,7 @@ const copyImages = (done) => {
 const cacheBusting = done => {
   src('./dist/index.html')
     .pipe(replace(/\.(js|css)\?ver/g, '.$1?ver=' + hash))
-    .pipe(replace(/\.(jpg|jpeg|png|svg|gif)/g, '.$1?ver=' + hash))
+    .pipe(replace(/\.(webp|jpg|jpeg|png|svg|gif)/g, '.$1?ver=' + hash))
     .pipe(dest('./dist'));
   done();
 };
