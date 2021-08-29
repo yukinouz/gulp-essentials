@@ -1,5 +1,11 @@
 @charset "utf-8";
 
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: top;
+}
+
 $red: #f00;
 
 .hoge {
