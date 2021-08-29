@@ -1,0 +1,10 @@
+mixin webpImg(className, imgName, extension, altName, smp)
+  picture(class=className)
+    if(smp === true)
+      source(media="(min-width: 768px)", srcset=imgPath + imgName + ".webp" type="image/webp")
+      source(media="(min-width: 768px)", srcset=imgPath + imgName + extension type="image/" + extension)
+      source(media="(max-width: 767px)", srcset=imgPath + imgName + "-smp" + ".webp", type="image/webp")
+      img(src=imgPath + imgName + "-smp" + "." + extension, type="image/" + extension, alt=altName)
+    else
+      source(srcset=imgPath + imgName + ".webp", type="image/webp")
+      img(src=imgPath + imgName + "." + extension, alt=altName)
