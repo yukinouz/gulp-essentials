@@ -81,7 +81,7 @@ const tinyPng = done => {
   src("./src/img/**/*.{png,jpg,jpeg}")
     .pipe(plumber())
     .pipe(tinypng({
-      key: "jJrqyS8h3RWsZ2QJ1pCp5mR1Sv3fZZTF",
+      key: "YOUR API KEY",
       sigFile: "./src/img/.tinypng-sigs",
       log: true,
       summarise: true,
