@@ -1,4 +1,4 @@
-const { src, dest, watch, series, parallel }  = require("gulp");
+const { src, dest, watch, series, parallel, lastRun }  = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
@@ -81,26 +81,19 @@ const tinyPng = done => {
   src("./src/img/**/*.{png,jpg,jpeg}")
     .pipe(plumber())
     .pipe(tinypng({
-      key: "Your API KEY",
+      key: "jJrqyS8h3RWsZ2QJ1pCp5mR1Sv3fZZTF",
       sigFile: "./src/img/.tinypng-sigs",
       log: true,
       summarise: true,
-      sameDest: true,
     }))
-    .pipe(dest("./src/img"));
+    .pipe(dest("./dist/img"));
   done();
 };
 
 const generateWebp = done => {
-  src("./src/img/**/*.{png,jpg,jpeg}")
+  src("./dist/img/**/*.{png,jpg,jpeg}", {since: lastRun(generateWebp)})
     .pipe(webp())
-    .pipe(dest("src/img"));
-  done();
-};
-
-const copyImages = done => {
-  src(["./src/img/**/*"])
-    .pipe(dest("./dist/img"));
+    .pipe(dest("dist/img"));
   done();
 };
 
@@ -116,6 +109,8 @@ const watchFiles = () => {
   watch( "./src/scss/**/*.scss", series(compileSass, browserReload))
   watch( "./src/pug/**/*.pug", series(compilePug, browserReload))
   watch( "./src/js/**/*.js", series(bundleJs, browserReload))
+  watch( "./src/img/**/*", tinyPng)
+  watch( "./dist/img/**/*", generateWebp)
   // watch("./**/*.html", browserReload)
 };
 
@@ -123,7 +118,7 @@ module.exports = {
   sass: compileSass,
   pug: compilePug,
   bundle: bundleJs,
-  image: series(tinyPng, generateWebp, copyImages),
+  image: series(tinyPng, generateWebp),
   cache: cacheBusting,
   default: parallel(buildServer, watchFiles),
 };
