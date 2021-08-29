@@ -10,6 +10,13 @@
   <body>
     <h1 class="hoge">Hello from pug!</h1>
     <button id="js-alert-button">ボタン</button>
+    <div>
+      <picture class="hogeclass">
+        <source media="(min-width: 768px)" srcset="./img/img-cat.webp" type="image/webp"/>
+        <source media="(min-width: 768px)" srcset="./img/img-catjpg" type="image/jpg"/>
+        <source media="(max-width: 767px)" srcset="./img/img-cat-smp.webp" type="image/webp"/><img src="./img/img-cat-smp.jpg" type="image/jpg" alt="画像の説明"/>
+      </picture>
+    </div>
     <script src="./js/bundle.js?ver"></script>
   </body>
 </html>
