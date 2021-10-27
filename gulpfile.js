@@ -61,8 +61,8 @@ const compilePug = done => {
     .pipe(pug({
       pretty: true
     }))
-    .pipe(dest('./dist'));
-  done();
+    .pipe(dest('./dist'))
+    .on("end", done);
 };
 
 const cacheBusting = done => {
