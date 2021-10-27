@@ -86,6 +86,7 @@ const tinyPng = done => {
       log: true,
       summarise: true,
       sameDest: true,
+      parallel: 10,
     }))
     .pipe(dest("./src/img"))
     .on("end", done);
