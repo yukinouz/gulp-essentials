@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "cache": "npx gulp cache",
-    "dev": "npx gulp build && npx gulp",
-    "build": "npx gulp build --production",
+    "dev": "NODE_ENV=development npx gulp build && NODE_ENV=development npx gulp",
+    "build": "NODE_ENV=production npx gulp build --production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

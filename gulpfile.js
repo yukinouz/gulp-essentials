@@ -76,8 +76,8 @@ const compilePug = done => {
     .pipe(pug({
       pretty: true
     }))
-    .pipe(dest("./dist"));
-  done();
+    .pipe(dest("./dist"))
+    .on("end", done);
 };
 
 const tinyPng = done => {
@@ -89,21 +89,22 @@ const tinyPng = done => {
       log: true,
       summarise: true,
       sameDest: true,
+      parallel: 10,
     }))
-    .pipe(dest("./src/img"));
-  done();
-};
-
-const generateWebp = done => {
-  src("./src/img/**/*.{png,jpg,jpeg}", {since: lastRun(generateWebp)})
-    .pipe(webp())
-    .pipe(dest("src/img"));
-  done();
+    .pipe(dest("./src/img"))
+    .on("end", done);
 };
 
 const copyImages = done => {
   src(["./src/img/**/*"])
-    .pipe(dest("./dist/img"));
+    .pipe(dest("./dist/img"))
+    .on("end", done);
+};
+
+const generateWebp = done => {
+  src("./dist/img/**/*.{png,jpg,jpeg}", {since: lastRun(generateWebp)})
+    .pipe(webp())
+    .pipe(dest("dist/img"));
   done();
 };
 
@@ -119,7 +120,7 @@ const watchFiles = () => {
   watch( "./src/scss/**/*.scss", series(compileSass, browserReload))
   watch( "./src/pug/**/*.pug", series(compilePug, browserReload))
   watch( "./src/js/**/*.js", series(bundleJs, browserReload))
-  watch( "./src/img/**/*", series(generateWebp, copyImages))
+  watch( "./src/img/**/*", series(copyImages, generateWebp, browserReload))
   // watch("./**/*.html", browserReload)
 };
 
@@ -131,6 +132,6 @@ module.exports = {
   webp: generateWebp,
   image: series(tinyPng, generateWebp, copyImages),
   cache: cacheBusting,
-  build: series(parallel(compileSass, bundleJs, compilePug), tinyPng, generateWebp, copyImages, cacheBusting),
+  build: series(parallel(compileSass, bundleJs, compilePug), tinyPng, copyImages, generateWebp, cacheBusting),
   default: parallel(buildServer, watchFiles),
 };
