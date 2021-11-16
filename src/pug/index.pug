@@ -1,3 +1,6 @@
+- const path = ".";
+- const imgPath = path + "/img/";
+include _picture
 doctype html
 html(lang="ja")
   head
@@ -9,5 +12,8 @@ html(lang="ja")
   body
     h1.hoge Hello from pug!
     button#js-alert-button ボタン
+
+    div
+      +webpImg("hogeclass", "img-cat", "jpg", "画像の説明", true)
 
     script(src="./js/bundle.js?ver")
