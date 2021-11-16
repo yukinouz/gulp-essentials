@@ -20,11 +20,14 @@ const webpack = require("webpack");
 
 const webpackConfig = require("./webpack.config");
 
-const bundleJs = () => {
-  return webpackStream(webpackConfig, webpack).on("error", function (e) {
-    this.emit("end");
+const bundleJs = (done) => {
+  webpackStream(webpackConfig, webpack)
+    .on('error', function (e) {
+      console.error(e);
+      this.emit('end');
   })
-  .pipe(dest("dist/js"));
+    .pipe(dest("dist/js"))
+  done();
 };
 
 const compileSass = done => {
