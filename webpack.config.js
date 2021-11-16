@@ -1,5 +1,5 @@
 module.exports = {
-  mode: "production",
+  mode: process.env.NODE_ENV,
   entry: "./src/js/main.js",
   output: {
     filename: "bundle.js"
