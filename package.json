@@ -31,7 +31,6 @@
     "gulp-postcss": "^9.0.0",
     "gulp-pug": "^5.0.0",
     "gulp-sass": "^5.0.0",
-    "node-sass": "^6.0.1",
     "postcss": "^8.3.5",
     "sass": "^1.35.1",
     "webpack": "^5.43.0",
