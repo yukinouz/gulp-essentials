@@ -11,6 +11,7 @@
    ```zsh
    npm install
    ```
+1. [tinyPng API](https://tinypng.com/developers)を作成し、gulpfile.js の`YOUR API KEY`にセットしてください。
 
 ## 実行方法
 
