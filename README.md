@@ -6,7 +6,7 @@
    ```zsh
    git clone https://github.com/yukinouz/gulp-essentials.git
    ```
-1. Node `v14.16.1`で動作保証をしております。
+1. Node `v18.6.0`で動作保証をしております。
 1. Node パッケージのインストールしてください。
    ```zsh
    npm install
