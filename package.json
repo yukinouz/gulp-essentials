@@ -20,10 +20,10 @@
   },
   "homepage": "https://github.com/yukinouz/gulp-essentials#readme",
   "devDependencies": {
-    "@babel/core": "^7.14.6",
-    "@babel/preset-env": "^7.14.7",
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
     "autoprefixer": "^10.2.6",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^9.1.0",
     "browser-sync": "^2.27.4",
     "css-declaration-sorter": "^6.0.3",
     "gulp": "^4.0.2",
@@ -39,8 +39,8 @@
     "gulp-webp": "^4.0.1",
     "postcss": "^8.3.5",
     "sass": "^1.35.1",
-    "webpack": "^5.44.0",
-    "webpack-cli": "^4.7.2",
-    "webpack-stream": "^6.1.2"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.0",
+    "webpack-stream": "^7.0.0"
   }
 }
