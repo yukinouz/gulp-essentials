@@ -1,4 +1,4 @@
-const { src, dest, watch, series, parallel, lastRun }  = require("gulp");
+const { src, dest, watch, series, parallel, lastRun } = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 const plumber = require("gulp-plumber");
 const notify = require("gulp-notify");
@@ -22,21 +22,21 @@ const webpackConfig = require("./webpack.config");
 
 const bundleJs = (done) => {
   webpackStream(webpackConfig, webpack)
-    .on('error', function (e) {
+    .on("error", function (e) {
       console.error(e);
-      this.emit('end');
-  })
-    .pipe(dest("dist/js"))
+      this.emit("end");
+    })
+    .pipe(dest("dist/js"));
   done();
 };
 
-const compileSass = done => {
+const compileSass = (done) => {
   const postcssPlugins = [
     autoprefixer({
       grid: "autoplace",
       cascade: false,
     }),
-    cssdeclsort({ order: "alphabetical" })
+    cssdeclsort({ order: "alphabetical" }),
   ];
   src("./src/scss/**/*.scss", { sourcemaps: true })
     .pipe(
@@ -49,7 +49,7 @@ const compileSass = done => {
   done();
 };
 
-const buildServer = done => {
+const buildServer = (done) => {
   browserSync.init({
     port: 8080,
     files: ["**/*"],
@@ -65,50 +65,54 @@ const buildServer = done => {
   done();
 };
 
-const browserReload = done => {
+const browserReload = (done) => {
   browserSync.reload();
   done();
 };
 
-const compilePug = done => {
+const compilePug = (done) => {
   src(["./src/pug/**/*.pug", "!" + "./src/pug/**/_*.pug"])
-    .pipe(plumber(({ errorHandler: notify.onError("Error: <%= error.message %>") })))
-    .pipe(pug({
-      pretty: true
-    }))
+    .pipe(
+      plumber({ errorHandler: notify.onError("Error: <%= error.message %>") })
+    )
+    .pipe(
+      pug({
+        pretty: true,
+      })
+    )
     .pipe(dest("./dist"))
     .on("end", done);
 };
 
-const tinyPng = done => {
+const tinyPng = (done) => {
   src("./src/img/**/*.{png,jpg,jpeg}")
     .pipe(plumber())
-    .pipe(tinypng({
-      key: "YOUR API KEY",
-      sigFile: "./src/img/.tinypng-sigs",
-      log: true,
-      summarise: true,
-      sameDest: true,
-      parallel: 10,
-    }))
+    .pipe(
+      tinypng({
+        key: "YOUR API KEY",
+        sigFile: "./src/img/.tinypng-sigs",
+        log: true,
+        summarise: true,
+        sameDest: true,
+        parallel: 10,
+      })
+    )
     .pipe(dest("./src/img"))
     .on("end", done);
 };
 
-const copyImages = done => {
-  src(["./src/img/**/*"])
-    .pipe(dest("./dist/img"))
-    .on("end", done);
+const copyImages = (done) => {
+  src(["./src/img/**/*"]).pipe(dest("./dist/img")).on("end", done);
 };
 
-const generateWebp = done => {
-  src("./dist/img/**/*.{png,jpg,jpeg}", {since: lastRun(generateWebp)})
+const generateWebp = (done) => {
+  src("./dist/img/**/*.{png,jpg,jpeg}", { since: lastRun(generateWebp) })
     .pipe(webp())
     .pipe(dest("dist/img"));
   done();
 };
 
-const cacheBusting = done => {
+const cacheBusting = (done) => {
   src("./dist/index.html")
     .pipe(replace(/\.(js|css)\?ver/g, ".$1?ver=" + hash))
     .pipe(replace(/\.(webp|jpg|jpeg|png|svg|gif)/g, ".$1?ver=" + hash))
@@ -117,10 +121,10 @@ const cacheBusting = done => {
 };
 
 const watchFiles = () => {
-  watch( "./src/scss/**/*.scss", series(compileSass, browserReload))
-  watch( "./src/pug/**/*.pug", series(compilePug, browserReload))
-  watch( "./src/js/**/*.js", series(bundleJs, browserReload))
-  watch( "./src/img/**/*", series(copyImages, generateWebp, browserReload))
+  watch("./src/scss/**/*.scss", series(compileSass, browserReload));
+  watch("./src/pug/**/*.pug", series(compilePug, browserReload));
+  watch("./src/js/**/*.js", series(bundleJs, browserReload));
+  watch("./src/img/**/*", series(copyImages, generateWebp, browserReload));
   // watch("./**/*.html", browserReload)
 };
 
@@ -132,6 +136,12 @@ module.exports = {
   webp: generateWebp,
   image: series(tinyPng, generateWebp, copyImages),
   cache: cacheBusting,
-  build: series(parallel(compileSass, bundleJs, compilePug), tinyPng, copyImages, generateWebp, cacheBusting),
+  build: series(
+    parallel(compileSass, bundleJs, compilePug),
+    tinyPng,
+    copyImages,
+    generateWebp,
+    cacheBusting
+  ),
   default: parallel(buildServer, watchFiles),
 };
