@@ -1,5 +1,7 @@
+const node_env = process.env.NODE_ENV ? process.env.NODE_ENV : "production";
+
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: node_env,
   entry: "./src/js/main.js",
   output: {
     filename: "bundle.js",
