@@ -2,7 +2,7 @@ module.exports = {
   mode: process.env.NODE_ENV,
   entry: "./src/js/main.js",
   output: {
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -12,9 +12,7 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
-              presets: [
-                "@babel/preset-env",
-              ],
+              presets: ["@babel/preset-env"],
             },
           },
         ],
@@ -22,4 +20,4 @@ module.exports = {
     ],
   },
   target: ["web", "es5"],
-}
+};
