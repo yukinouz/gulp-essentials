@@ -5,8 +5,22 @@ html(lang="ja")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href="./css/style.css?ver")
-    title Document
+    title Gulp Essentials | yukinouz1
   body
-    h1.hoge Hello from pug!
-
+    header.header
+      .inner
+        h1.header__title Gulp Essentials
+    main
+      section.sample
+        .inner
+          h2.sample__title Gulpの回答ファイルです。
+          .sample__box
+            p このページで確認できること
+            p これまでの内容に加えて以下ができることを確認してください。
+            ul.sample__list
+              li.sample__list-item
+                | npm run cacheでcss, jsにキャッシュが付与されること
+    footer.footer
+      .inner
+        p.footer__copyright COPYRIGHT yukinouz1 All Rights Reserved
     script(src="js/script.js?ver")
