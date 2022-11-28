@@ -1,3 +1,8 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 img {
   height: auto;
   max-width: 100%;
@@ -64,5 +69,58 @@ img {
   .media-query-sample02 {
     color: green;
   }
+}
+
+body {
+  font-family: "Helvetica Neue", arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", meiryo, sans-serif;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 1080px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.header__title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sample {
+  padding: 40px 0;
+}
+
+.sample__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sample__box {
+  border: 1px solid #000;
+  padding: 30px 20px;
+}
+
+.sample__img {
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.sample__button,
+.sample__img {
+  margin-top: 40px;
+}
+
+.footer {
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  padding: 20px 10px;
 }
 /*# sourceMappingURL=sourcemaps/style.css.map */
