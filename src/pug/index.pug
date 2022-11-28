@@ -4,6 +4,26 @@ html(lang="ja")
     meta(charset="UTF-8")
     meta(http-equiv="X-UA-Compatible", content="IE=edge")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    title Document
+    link(rel="stylesheet", href="./css/style.css")
+    title Gulp Essentials | yukinouz1
   body
-    h1.hoge-pug Hello from pug!
+    header.header
+      .inner
+        h1(class="header__title") Gulp Essentials
+    main
+      section.sample
+        .inner
+          h2(class="sample__title") Gulpの回答ファイルです
+          div(class="sample__box")
+            p このページで確認できること
+            p これまでの内容に加えて以下ができることを確認してください
+            ul(class="sample__list")
+              li(class="sample__list-item")
+                | npm run watchでローカルサーバー起動＆ライブリロード
+              li(class="sample__list-item")
+                | pug, scssの変更が保存時に反映されること
+              li(class="sample__list-item")
+                | index.htmlのコンパイル先がdistフォルダになっている
+    footer.footer
+      .inner
+        p(class="footer__copyright") COPYRIGHT yukinouz1 All Rights Reserved
