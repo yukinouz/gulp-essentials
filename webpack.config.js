@@ -1,8 +1,10 @@
+const node_env = process.env.NODE_ENV ? process.env.NODE_ENV : "production";
+
 module.exports = {
-  mode: process.env.NODE_ENV,
+  mode: node_env,
   entry: "./src/js/main.js",
   output: {
-    filename: "bundle.js"
+    filename: "bundle.js",
   },
   module: {
     rules: [
@@ -12,9 +14,7 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
-              presets: [
-                "@babel/preset-env",
-              ],
+              presets: ["@babel/preset-env"],
             },
           },
         ],
@@ -22,4 +22,4 @@ module.exports = {
     ],
   },
   target: ["web", "es5"],
-}
+};
