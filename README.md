@@ -1,5 +1,11 @@
 # gulp-essentials
 
+## 前提
+
+以下のバージョンで動作確認しております
+
+- node18.12.1
+
 ## Build Setup
 
 ```bash
