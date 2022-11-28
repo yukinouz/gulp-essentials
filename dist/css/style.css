@@ -1,3 +1,8 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 .hoge {
   color: #f00;
 }
@@ -45,18 +50,61 @@
 .media-query-sample01 {
   font-size: 14px;
 }
-
-.media-query-sample02 {
-  color: blue;
-}
-
 @media only screen and (min-width: 768px) {
   .media-query-sample01 {
     font-size: 18px;
   }
+}
 
+.media-query-sample02 {
+  color: blue;
+}
+@media only screen and (min-width: 768px) {
   .media-query-sample02 {
     color: green;
   }
+}
+
+body {
+  font-family: "Helvetica Neue", arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", meiryo, sans-serif;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+.inner {
+  margin: 0 auto;
+  max-width: 1080px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.header__title {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.sample {
+  padding: 40px 0;
+}
+
+.sample__title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.sample__box {
+  border: 1px solid #000;
+  padding: 30px 20px;
+}
+
+.footer {
+  background: #000;
+  color: #fff;
+  font-size: 12px;
+  padding: 10px 20px;
 }
 /*# sourceMappingURL=sourcemaps/style.css.map */
